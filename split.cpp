@@ -20,35 +20,28 @@ void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
   // WRITE YOUR CODE HERE
-
-  //initialzing the lists to be empty
-  odds = NULL;
-  evens = NULL;
-
-  //while their is values in the input list
-  while(in != NULL)
+  //Base case for recursion is when list is empty
+  if (in == NULL)
   {
-    //pointer that keeps track of the current node
-    Node* curr = in;
-    in = in->next;
-
-    //checking if val is even
-    if (curr->value % 2 == 0)
-    {
-      //add to correct list
-      curr->next = evens;
-      evens = curr;
-
-    }
-    //checking if odd
-    else
-    {
-      //adding to list
-      curr->next = odds;
-      odds = curr;
-    }
+    return;
   }
-  
+  //current node
+  Node* curr = in;
+  in = in->next;
+  //checking to see if it is even
+  if(curr->value%2 == 0)
+  {
+    curr->next = evens;
+    evens = curr;
+  }
+  //checking if odd
+  else
+  {
+    curr->next = odds;
+    odds = curr;
+  }
+  //recursively calling function
+  split(in,odds,evens);
 }
 
 /* If you needed a helper function, write it here */
